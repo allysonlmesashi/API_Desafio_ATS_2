@@ -1,0 +1,593 @@
+{
+	"info": {
+		"_postman_id": "b1da9039-ebe6-404d-b6b7-1f4ad8f60d73",
+		"name": "Desafio ATS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "7725879"
+	},
+	"item": [
+		{
+			"name": "Create candidate",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response has an id\", function () {\r",
+							"    var candidate = pm.response.json();\r",
+							"    pm.expect(candidate).to.have.property('id');\r",
+							"    pm.environment.set(\"candidateId\", candidate.id);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Candidato Postman\",\r\n  \"email\": \"email.candidato@teste.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:5186/api/candidate"
+			},
+			"response": []
+		},
+		{
+			"name": "Get candidate by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response has correct id\", function () {\r",
+							"    var candidate = pm.response.json();\r",
+							"    pm.expect(candidate.id).to.eql(pm.environment.get(\"candidateId\"));\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:5186/api/candidate/{{candidateId}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Put candidate",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Candidato Postman Atualizado\",\r\n  \"email\": \"email.atualizado@teste.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:5186/api/candidate/{{candidateId}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete candidate",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:5186/api/candidate/{{candidateId}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Get candidate by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:5186/api/candidate/{{candidateId}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Create vacancy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response has an id\", function () {\r",
+							"    var vacancy = pm.response.json();\r",
+							"    pm.expect(vacancy).to.have.property('id');\r",
+							"    pm.environment.set(\"vacancyId\", vacancy.id);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"description\": \"Analista Postman\",\r\n  \"salary\": 10000.99\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:5186/api/vacancy"
+			},
+			"response": []
+		},
+		{
+			"name": "Get vacancy by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response has correct id\", function () {\r",
+							"    var vacancy = pm.response.json();\r",
+							"    pm.expect(vacancy.id).to.eql(pm.environment.get(\"vacancyId\"));\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:5186/api/vacancy/{{vacancyId}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Put vacancy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"description\": \"Analista Postman Atualizado\",\r\n  \"salary\": 10000.98\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:5186/api/vacancy/{{vacancyId}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete vacancy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:5186/api/vacancy/{{vacancyId}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Get vacancy by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:5186/api/vacancy/{{vacancyId}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Create candidate",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response has an id\", function () {\r",
+							"    var candidate = pm.response.json();\r",
+							"    pm.expect(candidate).to.have.property('id');\r",
+							"    pm.environment.set(\"candidateId\", candidate.id);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Candidato Postman Aplicação Vaga\",\r\n  \"email\": \"email.candidato@teste.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:5186/api/candidate"
+			},
+			"response": []
+		},
+		{
+			"name": "Create vacancy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response has an id\", function () {\r",
+							"    var vacancy = pm.response.json();\r",
+							"    pm.expect(vacancy).to.have.property('id');\r",
+							"    pm.environment.set(\"vacancyId\", vacancy.id);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"description\": \"Analista Postman Aplicação Vaga\",\r\n  \"salary\": 10000.99\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:5186/api/vacancy"
+			},
+			"response": []
+		},
+		{
+			"name": "Create vacancy application",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response has correct candidateId\", function () {\r",
+							"    var vacancyApplication = pm.response.json();\r",
+							"    pm.expect(vacancyApplication.candidateId).to.eql(pm.environment.get(\"candidateId\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response has correct vacancyId\", function () {\r",
+							"    var vacancyApplication = pm.response.json();\r",
+							"    pm.expect(vacancyApplication.vacancyId).to.eql(pm.environment.get(\"vacancyId\"));\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"candidateId\": \"{{candidateId}}\",\r\n  \"vacancyId\": \"{{vacancyId}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:5186/api/vacancyApplication"
+			},
+			"response": []
+		},
+		{
+			"name": "Get vacancy application by candidate id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response has correct candidateId\", function () {\r",
+							"    var vacancyApplications = pm.response.json();\r",
+							"    pm.expect(vacancyApplications[0].candidateId).to.eql(pm.environment.get(\"candidateId\"));\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:5186/api/vacancyApplication/candidates/{{vacancyId}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete candidate",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:5186/api/candidate/{{candidateId}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete vacancy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:5186/api/vacancy/{{vacancyId}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Create candidate",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response has an id\", function () {\r",
+							"    var candidate = pm.response.json();\r",
+							"    pm.expect(candidate).to.have.property('id');\r",
+							"    pm.environment.set(\"candidateId\", candidate.id);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Candidato Postman Currículo\",\r\n  \"email\": \"email.candidato@teste.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:5186/api/candidate"
+			},
+			"response": []
+		},
+		{
+			"name": "Create candidate resume",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response has correct candidateId\", function () {\r",
+							"    var candidateResume = pm.response.json();\r",
+							"    pm.expect(candidateResume.candidateId).to.eql(pm.environment.get(\"candidateId\"));\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"candidateId\": \"{{candidateId}}\",\r\n  \"gender\": 2,\r\n  \"address\": \"Avenida Braz Leme, nº 1000\",\r\n  \"education\": [\r\n    {\r\n      \"description\": \"Engenharia de Software\",\r\n      \"startDate\": \"2009-02-01T00:00:00.000Z\",\r\n      \"endDate\": \"2012-12-01T00:00:00.000Z\",\r\n      \"institution\": \"FATEC\"\r\n    }\r\n  ],\r\n  \"workExperience\": [\r\n    {\r\n      \"description\": \"Analista de Sistemas\",\r\n      \"startDate\": \"2013-02-01T00:00:00.000Z\",\r\n      \"company\": \"Totvs\"\r\n    }\r\n  ],\r\n  \"hobby\": [\r\n    {\r\n      \"description\": \"Assistir TV\"\r\n    },\r\n    {\r\n      \"description\": \"Jogar futebol\"\r\n    }\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:5186/api/candidateResume"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete candidate",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:5186/api/candidate/{{candidateId}}"
+			},
+			"response": []
+		}
+	]
+}
